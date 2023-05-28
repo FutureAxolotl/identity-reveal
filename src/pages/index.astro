@@ -3,35 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Identity Reveal">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+		<div class="dialogueBox">
+			<h1 id="text1"></h1>
+			<h1 id="text2"></h1>
+			<button></button>
+		</div>	
 	</main>
 </Layout>
 
@@ -42,7 +20,7 @@ import Card from '../components/Card.astro';
 		max-width: 60ch;
 	}
 	h1 {
-		font-size: 3rem;
+		font-size: 24px;
 		font-weight: 800;
 		margin: 0;
 	}
@@ -78,4 +56,39 @@ import Card from '../components/Card.astro';
 		gap: 1rem;
 		padding: 0;
 	}
+	.dialogueBox {
+    	bottom:0%;
+
+		position: fixed;
+
+		border: 5px double #f6f6f6;
+		background-color: black;
+		text-align: center;
+		color: white;
+	}
 </style>
+<script>
+	var i1 = 0;
+	var txt1 = "There's something I've been considering for a while and have been hiding it from you..."
+	var speed = 70;
+
+	function t1() {
+		if (i1 < txt1.length) {
+			document.getElementById("text1").innerHTML += txt1.charAt(i1);
+			i1++;
+			setTimeout(t1, speed);
+		}
+	}
+
+	var i2 = 0;
+	var txt2 = "I have come to the conclusion that I am not straight. I hope you can come to accept me this way.";
+	function t2() {
+		if (i2 < txt2.length) {
+			document.getElementById("text2").innerHTML += txt2.charAt(i2);
+			i2++;
+			setTimeout(t1, speed);
+		}
+	}
+	
+	t1();
+</script>
